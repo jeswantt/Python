@@ -1,0 +1,37 @@
+class Solution(object):
+    def getLucky(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: int
+        """
+        l1 = [chr(i) for i in range(97,128)]
+        l2 = [str(j) for j in range(1,27)]
+        dic = {i:j for i,j in zip(l1,l2)}
+        print(dic)
+       
+        n1 = ''
+        n = 0
+        for i in s :
+            n1+=dic[i]
+        for i in n1:
+            n+=int(i)
+
+        if k == 1:
+            return n
+        else :
+            for  i in range(k-1):
+                m = 0
+                while n>0:
+                    m+=n%10
+                    n/=10
+                n = m
+
+        
+        return m
+            
+        
+
+
+
+             
