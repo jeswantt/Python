@@ -1,0 +1,19 @@
+class Solution(object):
+    def reversePrefix(self, word, ch):
+
+        str_val = ''
+        rev = ''
+
+        if ch not in word:
+            return word
+
+        for c in word:
+            if c == ch:
+                str_val += c
+                break
+            else:
+                str_val += c
+
+        rev = str_val[::-1]
+        res = word[len(rev):]
+        return rev + res
