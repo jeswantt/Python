@@ -1,0 +1,10 @@
+class Solution(object):
+    def minTimeToType(self, word):
+        t = 0; i = 'a'
+        for c in word:
+            x = (ord(c) - ord(i)) % 26
+            y = (ord(i) - ord(c)) % 26
+            t += min(x, y) + 1
+            i = c
+        return t
+        
