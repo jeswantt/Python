@@ -1,0 +1,11 @@
+class Solution(object):
+    def hammingDistance(self, x, y):
+        # T(n): O(1), after taking xor of 2 numbers, we'll count no.of 1s as different bits
+        
+# M1 - 2 Liner
+        value = str(bin(x^y))
+        return(value.count('1'))
+
+        # M2 - 1 Liner
+        return bin(x^y).count('1')
+        
