@@ -1,0 +1,21 @@
+class Solution(object):
+    def matrixReshape(self, mat, r, c):
+        """
+        :type mat: List[List[int]]
+        :type r: int
+        :type c: int
+        :rtype: List[List[int]]
+        """
+        matnum = len(mat) * len(mat[0])
+        if matnum != r * c:
+            return mat
+        
+        newmat = []
+        temprow = []
+        for row in mat:
+            for col in row:
+                temprow.append(col)
+                if len(temprow) == c:
+                    newmat.append(temprow)
+                    temprow = []
+        return newmat
