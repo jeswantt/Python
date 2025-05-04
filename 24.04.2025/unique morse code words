@@ -1,0 +1,34 @@
+class Solution(object):
+    def uniqueMorseRepresentations(self, words):
+        """
+        :type words: List[str]
+        :rtype: int
+        """
+        dicti = {'a':".-", 'b':"-...", 'c':"-.-.", 'd':"-..", 'e':".", 'f':"..-.", 'g':"--.", 'h':"....", 'i':"..", 'j':".---", 'k':"-.-", 'l':".-..", 'm':"--", 'n':"-.", 'o':"---", 'p':".--.", 'q':"--.-", 'r':".-.", 's':"...", 't':"-", 'u':"..-", 'v':"...-", 'w':".--", 'x':"-..-", 'y':"-.--", 'z':"--.."}
+
+
+        morse_list = []
+
+
+        #convert to morse code, all elements in list
+        for word in words:
+
+            morse_word = ""
+
+            #convert to morse code string
+            for char in word:
+                morse_word += dicti.get(char)
+
+            morse_list.append(morse_word)
+
+
+        return len(set(morse_list))
+
+
+
+
+
+
+
+
+        
