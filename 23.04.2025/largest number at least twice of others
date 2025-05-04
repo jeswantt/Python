@@ -1,0 +1,16 @@
+class Solution(object):
+    def dominantIndex(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        
+        m = max(nums)
+        
+        for i, n in enumerate(nums):
+            if n != m and m < n * 2:
+                return -1
+            if n == m:
+                res = i
+        return res
+        
