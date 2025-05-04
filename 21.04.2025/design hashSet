@@ -1,0 +1,25 @@
+class MyHashSet(object):
+
+    def __init__(self):
+        self.size = 1000
+        self.hash_set = [None] * self.size
+
+    def _hash(self, key):
+        return key % self.size
+
+    def add(self, key):
+        index = self._hash(key)
+        if self.hash_set[index] is None:
+            self.hash_set[index] = set()
+        self.hash_set[index].add(key)
+
+    def remove(self, key):
+        index = self._hash(key)
+        if self.hash_set[index] is not None:
+            self.hash_set[index].discard(key)
+
+    def contains(self, key):
+        index = self._hash(key)
+        if self.hash_set[index] is None:
+            return False
+        return key in self.hash_set[index]
