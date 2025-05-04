@@ -1,0 +1,26 @@
+class Solution(object):
+    def findSecondMinimumValue(self, root):
+        """
+        :type root: Optional[TreeNode]
+        :rtype: int
+        """
+        self.min = root.val
+        self.list = []
+        self.dfs(root)
+        if len(self.list) == 0:
+            return -1
+        else:
+            return sorted(self.list)[0]
+
+    def dfs(self,node):
+        if not node:
+            return
+        if node.val != self.min:
+            self.list.append(node.val)
+            return
+        else:
+            if node.left:
+                self.dfs(node.left)
+                self.dfs(node.right)
+            return
+        
