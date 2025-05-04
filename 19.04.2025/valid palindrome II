@@ -1,0 +1,51 @@
+class Solution(object):
+    def validPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        '''
+        #this function is no longer useful but may be useful in future logic so keep for now
+        def checkPalindrome(string):
+            for index in range(0, int(len(string) / 2)): 
+                if not string[index] == string[len(string) - index - 1]:
+                    return False
+            return True
+        '''
+        isValid = s[0:int(len(s)/2)] == s[int(len(s)/2)+(len(s)%2):len(s)][::-1] #check both halves after reversing the sec half
+        if isValid: #if already a valid palindrome then true, else we work our magic
+            return isValid
+        else:
+            wholeTempStr1 = ""
+            wholeTempStr2 = ""
+            tempStr1 = ""
+            tempStr2 = ""
+            tempStr3 = ""
+            tempStr4 = ""
+            tempBool = False
+            tempStrDict = {}
+            badIndex = None
+            for index in range(0, (int(len(s)/2)+(len(s)%2))): #find the first index to remove if there is one to remove
+                if s[index] != s[len(s)-index-1]: #none matching indexes
+                    wholeTempStr1 = s[0:index] + s[index+1:len(s)] #first check with beginning index removed
+                    wholeTempStr2 = s[0:len(s)-index-1] + s[len(s)-index:len(s)] #second check with later index removed
+                    tempStr1 = wholeTempStr1[0:int(len(wholeTempStr1)/2)]
+                    tempStr2 = wholeTempStr1[int(len(wholeTempStr1)/2)+(len(wholeTempStr1)%2):len(wholeTempStr1)][::-1]
+                    tempStr3 = wholeTempStr2[0:int(len(wholeTempStr2)/2)]
+                    tempStr4 = wholeTempStr2[int(len(wholeTempStr2)/2)+(len(wholeTempStr2)%2):len(wholeTempStr2)][::-1]
+                    if tempStr1 != tempStr2 and tempStr3 != tempStr4: #both indexes removed are not Palindrome, return False
+                        return tempBool
+                    elif tempStr1 != tempStr2 and tempStr3 == tempStr4: #first index is bad
+                        badIndex = index
+                        break
+                    else: #tempStr1 == tempStr2 and tempStr3 != tempStr4, second index is bad
+                        badIndex = len(s) - index - 1
+                        break
+            if badIndex != None:
+                tempBool = True
+            else: #there is a string where we should remove an index and do some palindrome checks
+                wholeTempStr1 = s[0:badIndex] + s[badIndex+1:len(s)]
+                tempStr1 = wholeTempStr1[0:int(len(wholeTempStr1)/2)]
+                tempStr2 = wholeTempStr1[int(len(wholeTempStr1)/2)+(len(wholeTempStr1)%2):len(wholeTempStr1)][::-1]
+                tempBool = tempStr1 == tempStr2
+            return tempBool
