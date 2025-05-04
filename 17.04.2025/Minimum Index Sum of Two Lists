@@ -1,0 +1,14 @@
+class Solution(object):
+    def findRestaurant(self, list1, list2):
+        """
+        :type list1: List[str]
+        :type list2: List[str]
+        :rtype: List[str]
+        """
+        result={}
+
+        for i in list1:
+            if i in list2:
+                result[i] = list1.index(i) + list2.index(i)
+        min_val = min(result.values())
+        return [i for i,j in result.items() if j==min_val]
