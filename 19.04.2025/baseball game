@@ -1,0 +1,15 @@
+class Solution(object):
+    def calPoints(self, operations):
+        stack = []
+        for i in operations:
+            if i.isnumeric():
+                stack.append(int(i))
+            elif i == 'C':
+                stack.pop()
+            elif i == 'D':
+                stack.append(2 * stack[-1])
+            elif i == "+":
+                stack.append(stack[-1] + stack[-2])
+            elif i[0] == '-':
+                stack.append(int(i))
+        return sum(stack)
