@@ -1,0 +1,27 @@
+class Solution(object):
+    def findTarget(self, root, k):
+        """
+        :type root: Optional[TreeNode]
+        :type k: int
+        :rtype: bool
+        """
+        seen = set()  # To store the values of nodes we've seen
+        
+        def inorder(node):
+            if not node:
+                return False
+            
+            # Calculate the complement
+            complement = k - node.val
+            
+            # Check if the complement is already seen
+            if complement in seen:
+                return True
+            
+            # Add the current value to the set
+            seen.add(node.val)
+            
+            # Continue searching in left and right subtrees
+            return inorder(node.left) or inorder(node.right)
+        
+        return inorder(root)
