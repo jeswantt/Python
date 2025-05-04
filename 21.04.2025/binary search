@@ -1,0 +1,25 @@
+class Solution(object):
+    def search(self, nums, target):
+
+        n = 0
+        q=0
+        for i in nums:
+            if i == target:
+                q = n
+                break
+            
+
+            else :
+                q =-1
+
+            n = n+1
+
+
+        return (q)
+            
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        
