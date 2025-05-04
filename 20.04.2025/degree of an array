@@ -1,0 +1,21 @@
+class Solution(object):
+    def findShortestSubArray(self, nums):
+        # Dictionary to store the indices of each number in the array
+        index_map = {}
+
+        for i, num in enumerate(nums):
+            if num in index_map:
+                index_map[num].append(i)
+            else:
+                index_map[num] = [i]
+
+        # Find the maximum frequency (degree) of the array
+        max_degree = max(len(indices) for indices in index_map.values())
+
+        # Find the shortest subarray length for all elements with the max degree
+        min_length = float('inf')
+        for indices in index_map.values():
+            if len(indices) == max_degree:
+                min_length = min(min_length, indices[-1] - indices[0] + 1)
+
+        return min_length
